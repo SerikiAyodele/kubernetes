@@ -398,14 +398,6 @@ const (
 	// that have never been unsuspended before.
 	JobMutableNodeSchedulingDirectives featuregate.Feature = "JobMutableNodeSchedulingDirectives"
 
-	// owner: @kannon92
-	// kep : https://kep.k8s.io/3939
-	// alpha: v1.28
-	//
-	// Allow users to specify recreating pods of a job only when
-	// pods have fully terminated.
-	JobPodReplacementPolicy featuregate.Feature = "JobPodReplacementPolicy"
-
 	// owner: @mimowo
 	// kep: https://kep.k8s.io/3329
 	// alpha: v1.25
@@ -415,6 +407,13 @@ const (
 	// and pod conditions.
 	JobPodFailurePolicy featuregate.Feature = "JobPodFailurePolicy"
 
+	// owner: @kannon92
+	// kep : https://kep.k8s.io/3939
+	// alpha: v1.28
+	//
+	// Allow users to specify recreating pods of a job only when
+	// pods have fully terminated.
+	JobPodReplacementPolicy featuregate.Feature = "JobPodReplacementPolicy"
 	// owner: @alculquicondor
 	// alpha: v1.23
 	// beta: v1.24
@@ -626,6 +625,13 @@ const (
 	//
 	// Enables PDBUnhealthyPodEvictionPolicy for PodDisruptionBudgets
 	PDBUnhealthyPodEvictionPolicy featuregate.Feature = "PDBUnhealthyPodEvictionPolicy"
+
+	// owner: @RomanBednar
+	// kep: https://kep.k8s.io/3762
+	// alpha: v1.28
+	//
+	// Adds a new field to persistent volumes which holds a timestamp of when the volume last transitioned its phase.
+	PersistentVolumeLastPhaseTransitionTime featuregate.Feature = "PersistentVolumeLastPhaseTransitionTime"
 
 	// owner: @haircommander
 	// kep: https://kep.k8s.io/2364
@@ -1105,6 +1111,8 @@ var defaultKubernetesFeatureGates = map[featuregate.Feature]featuregate.FeatureS
 
 	PDBUnhealthyPodEvictionPolicy: {Default: true, PreRelease: featuregate.Beta},
 
+	PersistentVolumeLastPhaseTransitionTime: {Default: false, PreRelease: featuregate.Alpha},
+
 	PodAndContainerStatsFromCRI: {Default: false, PreRelease: featuregate.Alpha},
 
 	PodDeletionCost: {Default: true, PreRelease: featuregate.Beta},
@@ -1198,7 +1206,7 @@ var defaultKubernetesFeatureGates = map[featuregate.Feature]featuregate.FeatureS
 
 	genericfeatures.APIResponseCompression: {Default: true, PreRelease: featuregate.Beta},
 
-	genericfeatures.ValidatingAdmissionPolicy: {Default: false, PreRelease: featuregate.Alpha},
+	genericfeatures.ValidatingAdmissionPolicy: {Default: false, PreRelease: featuregate.Beta},
 
 	genericfeatures.CustomResourceValidationExpressions: {Default: true, PreRelease: featuregate.Beta},
 
